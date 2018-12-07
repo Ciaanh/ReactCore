@@ -1,4 +1,6 @@
-﻿.navbar li .glyphicon {
+﻿
+
+.navbar li .glyphicon {
     margin-right: 10px;
 }
 
@@ -48,11 +50,16 @@
         padding: 10px 16px;
         border-radius: 4px;
     }
-    .navbar a {
+    .navbar a, .navbar p {
         /* If a menu item's text is too long, truncate it */
         width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .navbar .form-control{
+        margin: 5px;
+        color:darkgrey;
     }
 }

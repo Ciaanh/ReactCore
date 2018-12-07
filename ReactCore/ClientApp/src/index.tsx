@@ -14,13 +14,17 @@ import App from './App';
 
 import registerServiceWorker from './registerServiceWorker';
 
+import { AuthProvider } from './auth/AuthProvider';
+
 const baseUrl: string = document.getElementsByTagName('base')[0].getAttribute('href') as string;
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
-  <BrowserRouter basename={baseUrl}>
-    <App />
-  </BrowserRouter>,
+  <AuthProvider>
+    <BrowserRouter basename={baseUrl}>
+      <App />
+    </BrowserRouter>
+  </AuthProvider>,
   rootElement);
 
 registerServiceWorker();

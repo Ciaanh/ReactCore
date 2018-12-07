@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Route } from 'react-router';
+import { Redirect, Route, RouteComponentProps, withRouter } from 'react-router-dom';
 
 import { Layout } from './components/Layout';
 
@@ -10,16 +10,26 @@ import { FetchData } from './components/FetchData';
 
 import { Counter } from './components/Counter';
 
-export default class App extends React.Component<any, any> {
-  public displayName = App.name
+import { IAuthContext, withAuth } from './auth/AuthContext';
 
+import { compose } from 'recompose';
+
+
+class App extends React.Component<RouteComponentProps & IAuthContext, any> {
   public render() {
     return (
       <Layout>
         <Route exact={true} path='/' component={Home} />
         <Route path='/counter' component={Counter} />
-        <Route path='/fetchdata' component={FetchData} />
+        <Route path='/fetchdata' render={this.fetchdataRender} />
       </Layout>
     );
   }
-}
+
+  private fetchdataRender = (props: RouteComponentProps) => this.props.authContext.isSignedIn ? <FetchData {...props} /> : <Redirect to={'/'} />;
+};
+
+export default compose(
+  withAuth,
+  withRouter,
+)(App);

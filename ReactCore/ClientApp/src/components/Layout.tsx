@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Col, Grid, Row } from 'react-bootstrap';
 
-import { NavMenu } from './NavMenu';
+import NavMenu from './NavMenu';
 
 export class Layout extends React.Component {
   public displayName = Layout.name
